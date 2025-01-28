@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "NT Somic-VF";
+
+  color: rgb(206, 218, 228);
+}
+
+@font-face {
+  font-family: "NT Somic-VF";
+  src: url("./fonts/NT Somic-VF.ttf");
+}
+
+a {
+  text-decoration: none;
+}
