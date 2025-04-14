@@ -1,11 +1,16 @@
+:root {
+  --text-color: #cedae4;
+  --main-color: #141417;
+  --navigator-color: #201e25;
+  --blue-color: #00aeff;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 
   font-family: "NT Somic-VF";
-
-  color: rgb(206, 218, 228);
 }
 
 @font-face {
@@ -15,4 +20,9 @@
 
 a {
   text-decoration: none;
+  color: var(--text-color);
+}
+
+div {
+  color: var(--text-color);
 }

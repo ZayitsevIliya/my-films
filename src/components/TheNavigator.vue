@@ -2,66 +2,89 @@
 import TheWatchedIcon from "@/assets/icons/TheWatchedIcon.vue";
 import TheWishItemIcon from "@/assets/icons/TheWishItemIcon.vue";
 import TheExpectedIcon from "@/assets/icons/TheExpectedIcon.vue";
+import TheFavoriteIcon from "@/assets/icons/TheFavoriteIcon.vue";
+import NavItem from "@/components/NavItem.vue";
+import { useMovieStore } from "@/store/movieStore";
+
+import {
+  APP_TITLE,
+  WISH_LIST,
+  EXPECTED_LIST,
+  WATCHED_LIST,
+  FAVORITE_LIST,
+} from "@/constants";
 
 const navList = {
-  Wishlist: TheWishItemIcon,
-  Expected: TheExpectedIcon,
-  Watched: TheWatchedIcon,
+  [WISH_LIST]: TheWishItemIcon,
+  [EXPECTED_LIST]: TheExpectedIcon,
+  [WATCHED_LIST]: TheWatchedIcon,
+  [FAVORITE_LIST]: TheFavoriteIcon,
 };
+
+const movieStore = useMovieStore();
+
+function setMoviesCategory(moviesListName) {
+  movieStore.changeCurrentMovieListCategory(moviesListName);
+}
 </script>
+
 <template>
   <div class="navigator">
-    <div class="nav-item" v-for="(icon, item) of navList" :key="item">
-      <a href="#">
-        <component class="icon" :is="icon"></component>
-        <span class="nav-item-text">
-          {{ item }}
-        </span>
-      </a>
-    </div>
+    <h1>
+      {{ APP_TITLE }}
+    </h1>
+    <NavItem
+      v-for="(icon, name) of navList"
+      :key="name"
+      :name="name"
+      :icon="icon"
+      @click="setMoviesCategory(name)"
+    />
   </div>
 </template>
 
 <style scoped>
 .navigator {
-  height: 50%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
   display: flex;
   flex-direction: column;
-  gap: 15%;
+  gap: 8%;
 
-  margin-top: 6rem;
-  margin-left: 2rem;
-}
-.icon {
-  width: 2.2rem;
-  height: 2.2rem;
+  min-width: 230px;
+  height: 100vh;
+
+  background-color: var(--navigator-color);
 }
 
-a {
+h1 {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
 
-  font-size: 2rem;
-}
+  padding-top: 5%;
 
-span:hover {
-  color: white;
+  font-size: 3.2rem;
+
+  cursor: default;
 }
 
 @media (max-width: 768px) {
-  .nav-item-text {
-    display: none;
-  }
-
   .navigator {
-    margin-left: 0;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+
+    flex-direction: row;
+    gap: 0;
+
+    height: 10vh;
+    min-height: 50px;
   }
 
-  .nav-item {
-    display: flex;
-    justify-content: center;
+  h1 {
+    display: none;
   }
 }
 </style>

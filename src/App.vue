@@ -1,17 +1,19 @@
 <script setup>
-import MainPage from "@/components/MainPage.vue";
-import SideBar from "@/components/SideBar.vue";
+import TheMainPage from "@/components/TheMainPage.vue";
+import { useStorage } from "@/composables/useStorage";
+import { onBeforeMount } from "vue";
+
+const { saveMovieList, loadMovieList } = useStorage();
+
+addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") {
+    saveMovieList();
+  }
+});
+
+onBeforeMount(() => loadMovieList());
 </script>
 
 <template>
-  <div class="content">
-    <SideBar />
-    <MainPage />
-  </div>
+  <TheMainPage />
 </template>
-
-<style scoped>
-.content {
-  display: flex;
-}
-</style>
