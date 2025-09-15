@@ -1,6 +1,6 @@
 <script setup>
-import MovieCardPoster from "@/components/MovieCardPoster.vue";
-import MovieCardButtons from "@/components/MovieCardButtons.vue";
+import MovieCardPoster from "@/components/movieCard/MovieCardPoster.vue";
+import MovieCardButtons from "@/components/movieCard/MovieCardButtons.vue";
 import { useMovieStore } from "@/store/movieStore";
 
 const movieStore = useMovieStore();

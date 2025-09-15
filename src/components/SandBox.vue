@@ -1,16 +1,13 @@
 <script setup>
-const testArr = [];
-testArr.push("1");
+import { navData } from "@/config/navigator.config";
 </script>
 
 <template>
-  <div>
-    {{ testArr }}
-  </div>
+  <h1>Test</h1>
+  <div>result: {{ navData.number }}</div>
 </template>
 <style scoped>
-div {
-  padding: 100px;
+* {
   color: black;
   font-size: 36px;
 }

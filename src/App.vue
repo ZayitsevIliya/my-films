@@ -1,5 +1,6 @@
 <script setup>
 import TheMainPage from "@/components/TheMainPage.vue";
+// import SandBox from "@/components/SandBox.vue";
 import { useStorage } from "@/composables/useStorage";
 import { onBeforeMount } from "vue";
 
@@ -16,4 +17,5 @@ onBeforeMount(() => loadMovieList());
 
 <template>
   <TheMainPage />
+  <!-- <SandBox /> -->
 </template>

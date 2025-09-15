@@ -1,11 +1,21 @@
 <script setup>
 import TheSearch from "@/components/TheSearch.vue";
-import TheNavigator from "@/components/TheNavigator.vue";
+import TheNavigator from "@/components/navigation/TheNavigator.vue";
 import TheMovieList from "@/components/TheMovieList.vue";
 import { useMovieStore } from "@/store/movieStore";
 import AnimatedLoader from "@/components/AnimatedLoader.vue";
+import { navList } from "@/config/navigator.config";
+import { computed } from "vue";
 
 const movieStore = useMovieStore();
+
+function setMoviesCategory(moviesListName) {
+  movieStore.changeCurrentMovieListCategory(moviesListName);
+}
+
+const activeNavItem = computed(() => {
+  return movieStore.currentMovieListCategory;
+});
 </script>
 
 <template>
@@ -15,7 +25,11 @@ const movieStore = useMovieStore();
       <AnimatedLoader v-if="movieStore.loaderState" />
       <TheMovieList />
     </div>
-    <TheNavigator />
+    <TheNavigator
+      :nav-list="navList"
+      :active-nav-item="activeNavItem"
+      @nav-item-click="setMoviesCategory"
+    />
   </div>
 </template>
 

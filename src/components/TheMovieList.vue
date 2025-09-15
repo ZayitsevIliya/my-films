@@ -1,6 +1,6 @@
 <script setup>
-import MoviePreview from "@/components/MoviePreview.vue";
-import MovieCard from "@/components/MovieCard.vue";
+import MoviePreview from "@/components/movieCard/MoviePreview.vue";
+import MovieCard from "@/components/movieCard/MovieCard.vue";
 import Overlay from "@/components/OverlayComponent.vue";
 import { useMovieStore } from "@/store/movieStore";
 import { computed } from "vue";

@@ -1,57 +1,53 @@
 <script setup>
-import { useMovieStore } from "@/store/movieStore";
+import { computed } from "vue";
 
-const movieStore = useMovieStore();
+const props = defineProps(["name", "icon", "activeNavItem"]);
 
-function isCurrentNavItem(navItem) {
-  return navItem == movieStore.currentMovieListCategory;
-}
-
-defineProps(["name", "icon"]);
+const classes = computed(() => {
+  return props.activeNavItem == props.name ? "active-nav-item" : "nav-item";
+});
 </script>
 
 <template>
-  <div :class="['nav-item', { 'current-nav-item': isCurrentNavItem(name) }]">
-    <a :href="`#${name}`">
-      <component class="icon" :is="icon" />
-      <span>{{ name }}</span>
-    </a>
-  </div>
+  <a :href="`#${name}`" :class="classes">
+    <component class="icon" :is="icon" />
+    <span>{{ name }}</span>
+  </a>
 </template>
 
 <style scoped>
-.nav-item:hover {
-  background-color: #14141733;
-
-  transition: 200ms;
-}
-
 a {
+  height: 70px;
+
+  padding-left: 10%;
+
   display: flex;
   align-items: center;
   gap: 8px;
 
-  height: 70px;
-
   font-size: 1.3rem;
   text-transform: capitalize;
-
-  margin-left: 10%;
 }
 
 a:hover > * {
   color: white;
 }
 
-.current-nav-item {
+.active-nav-item * {
+  color: white;
+}
+
+.active-nav-item {
   background-color: #141417;
   transition: background-color 100ms;
 
   pointer-events: none;
 }
 
-.current-nav-item * {
-  color: white;
+.nav-item:hover {
+  background-color: #14141733;
+
+  transition: 200ms;
 }
 
 .icon {
@@ -80,11 +76,11 @@ a:hover > * {
   }
 
   a {
-    justify-content: center;
+    height: 100%;
 
     margin-left: 0;
 
-    height: 100%;
+    justify-content: center;
   }
 }
 </style>
